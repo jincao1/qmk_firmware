@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SIDE_SPEED_MAX      4
 #define SIDE_COLOUR_MAX     8
 
-#define SIDE_LINE           6
+#define SIDE_LINE           5
 #define SIDE_LED_NUM        12
 
 #define RF_LED_LINK_PERIOD  500
@@ -71,13 +71,12 @@ const uint8_t side_light_table[6] = {
     106,
 };
 
-const uint8_t side_led_index_tab[SIDE_LINE][2] = {
-    {5, 6},
-    {4, 7},
-    {3, 8},
-    {2, 9},
-    {1, 10},
-    {0, 11},
+const uint8_t side_led_index_tab[SIDE_LINE] = {
+     88,
+     89,
+     90,
+     91,
+     92
 };
 // clang-format on
 
@@ -413,9 +412,7 @@ static void side_wave_mode_show(void) {
 
         count_rgb_light(side_light_table[side_light]);
 
-        for (int j = 0; j < 2; j++) {
-            side_rgb_set_color(side_led_index_tab[i][j], r_temp, g_temp, b_temp);
-        }
+        side_rgb_set_color(side_led_index_tab[i], r_temp, g_temp, b_temp);
     }
 }
 
