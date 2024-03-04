@@ -1,11 +1,12 @@
 name: Build Gem80
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
     paths:
-      - keyboards/nuphy/gem80/*
+      - keyboards/nuphy/gem80/**
 
 jobs:
   build:
