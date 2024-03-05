@@ -170,14 +170,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 host_consumer_send(0);
             }
             return false;
-        // 启动台
-        case MAC_DNT:
-            if (record->event.pressed) {
-                host_consumer_send(0x02A0);
-            } else {
-                host_consumer_send(0);
-            }
-            return false;
         case MAC_PRT:
             if (record->event.pressed) {
                 register_code(KC_LGUI);

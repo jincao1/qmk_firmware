@@ -122,7 +122,7 @@ void side_rgb_set_color(int i, uint8_t r, uint8_t g, uint8_t b) {
  * @brief Set all side LED colour
  */
 void side_rgb_set_color_all(uint8_t r, uint8_t g, uint8_t b) {
-    for (uint8_t i = 0; i < 12; i++) {
+    for (uint8_t i = 0; i < SIDE_LED_NUM; i++) {
         side_rgb_set_color(i, r, g, b);
     }
 }
@@ -246,7 +246,7 @@ void side_mode_control(uint8_t dir) {
  * @param  ...
  */
 void set_left_rgb(uint8_t r, uint8_t g, uint8_t b) {
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 4; i++)
         side_rgb_set_color(i, r, g, b);
 }
 
@@ -255,7 +255,7 @@ void set_left_rgb(uint8_t r, uint8_t g, uint8_t b) {
  * @param  ...
  */
 void set_right_rgb(uint8_t r, uint8_t g, uint8_t b) {
-    for (int i = 6; i < 12; i++)
+    for (int i = 5; i < SIDE_LED_NUM; i++)
         side_rgb_set_color(i, r, g, b);
 }
 
@@ -548,7 +548,7 @@ void bat_percent_led(void) {
     for (; i <= bat_end_led; i++)
         side_rgb_set_color(11 - i, bat_pct_rgb.r, bat_pct_rgb.g, bat_pct_rgb.b);
 
-    for (; i < 6; i++)
+    for (; i < 5; i++)
         side_rgb_set_color(11 - i, 0, 0, 0);
 }
 

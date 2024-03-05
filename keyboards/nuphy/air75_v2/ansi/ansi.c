@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "nuphy/gem80/ansi/ansi.h"
 #include "user_kb.h"
 #include "ansi.h"
 #include "usb_main.h"
@@ -137,7 +138,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case MAC_VOICE:
+        case MAC_SPOTLIGHT:
             if (record->event.pressed) {
                 host_consumer_send(0xcf);
             } else {

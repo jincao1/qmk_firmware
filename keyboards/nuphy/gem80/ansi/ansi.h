@@ -30,7 +30,6 @@ enum custom_keycodes {
     MAC_TASK,
     MAC_SEARCH,
     MAC_VOICE,
-    MAC_DNT,
     MAC_PRT,
     MAC_DND,
     MAC_PRTA,

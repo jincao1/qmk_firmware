@@ -11,7 +11,7 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
-        "console": true,
+        "console": false,
         "command": false,
         "nkro": true,
         "key_lock": true,
@@ -39,6 +39,7 @@
       "speed_steps": 52,
       "sleep": true,
       "animations": {
+          "solid_color": true,
           "gradient_up_down": true,
           "gradient_left_right": true,
           "breathing": true,
