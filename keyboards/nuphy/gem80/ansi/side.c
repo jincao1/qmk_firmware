@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SIDE_COLOUR_MAX     8
 
 #define SIDE_LINE           5
-#define SIDE_LED_NUM        12
+#define SIDE_LED_NUM        15
 
 #define RF_LED_LINK_PERIOD  500
 #define RF_LED_PAIR_PERIOD  250
