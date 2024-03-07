@@ -29,20 +29,20 @@ extern uint16_t        rf_link_timeout;
 extern uint16_t        no_act_time;
 extern bool            f_goto_sleep;
 extern bool            f_wakeup_prepare;
-extern bool            flush_side_leds;
+// extern bool            flush_side_leds;
 extern uint16_t        sleep_time_delay;
 
-void side_rgb_set_color_all(uint8_t r, uint8_t g, uint8_t b);
-void side_rgb_refresh(void);
+// void side_rgb_set_color_all(uint8_t r, uint8_t g, uint8_t b);
+// void side_rgb_refresh(void);
 
 void deep_sleep_handle(void) {
     break_all_key(); // reset keys before sleeping for new QMK lifecycle to handle on wake.
 
     // Visual cue for deep sleep on side LED.
-    pwr_side_led_on();
+    // pwr_side_led_on();
     wait_ms(50); // give some time to ensure LED powers on.
-    side_rgb_set_color_all(0x99, 0x00, 0x00);
-    side_rgb_refresh();
+    // side_rgb_set_color_all(0x99, 0x00, 0x00);
+    // side_rgb_refresh();
     wait_ms(500);
 
     // Sync again before sleeping. Without this, the wake keystroke is more likely to be lost.
@@ -54,7 +54,7 @@ void deep_sleep_handle(void) {
     // Change any LED's state so the LED driver flushes after turning on for solid colours.
     // Without doing this, the WS2812 driver wouldn't flush as the previous state is the same as current.
     rgb_matrix_set_color_all(0, 0, 0);
-    flush_side_leds = true;
+    // flush_side_leds = true;
     no_act_time = 0; // required to not cause an immediate sleep on first wake
 }
 

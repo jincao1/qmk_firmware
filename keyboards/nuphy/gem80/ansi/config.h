@@ -35,3 +35,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define EECONFIG_KB_DATA_SIZE               10 // match used byte size of user_config_t + 1 (seems to need extra byte)
 #define RGB_MATRIX_LED_COUNT     93  // RGB总灯数 (88轴灯+5侧灯)
+
+
+#define WS2812_DI_PIN                       C8
+#define RGBLIGHT_LED_COUNT                  5
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_LAYERS
+// #define RGBLIGHT_WS2812
+// #define RGBLIGHT_DEFAULT_MODE               RGBLIGHT_MODE_STATIC_LIGHT

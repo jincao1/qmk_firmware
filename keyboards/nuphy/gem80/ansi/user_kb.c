@@ -140,12 +140,12 @@ void long_press_key(void) {
             wait_ms(500);
             uart_send_cmd(CMD_CLR_DEVICE, 10, 10);
 
-            void device_reset_show(void);
-            void device_reset_init(void);
+            // void device_reset_show(void);
+            // void device_reset_init(void);
 
             eeconfig_init();
-            device_reset_show();
-            device_reset_init();
+            // device_reset_show();
+            // device_reset_init();
 
             if (dev_info.sys_sw_state == SYS_SW_MAC) {
                 default_layer_set(1 << 0);
@@ -164,7 +164,7 @@ void long_press_key(void) {
         rgb_test_press_delay++;
         if (rgb_test_press_delay >= RGB_TEST_PRESS_DELAY) {
             f_rgb_test_press = 0;
-            rgb_test_show();
+            // rgb_test_show();
         }
     } else {
         rgb_test_press_delay = 0;
@@ -396,11 +396,11 @@ void load_eeprom_data(void) {
     if (user_config.default_brightness_flag != 0xA5) {
         user_config_reset();
     } else {
-        side_mode   = user_config.ee_side_mode;
-        side_light  = user_config.ee_side_light;
-        side_speed  = user_config.ee_side_speed;
-        side_rgb    = user_config.ee_side_rgb;
-        side_colour = user_config.ee_side_colour;
+        // side_mode   = user_config.ee_side_mode;
+        // side_light  = user_config.ee_side_light;
+        // side_speed  = user_config.ee_side_speed;
+        // side_rgb    = user_config.ee_side_rgb;
+        // side_colour = user_config.ee_side_colour;
     }
 }
 
@@ -408,21 +408,21 @@ void load_eeprom_data(void) {
  * @brief User config to default setting.
  */
 void user_config_reset(void) {
-    side_mode   = 0;
-    side_light  = 1;
-    side_speed  = 2;
-    side_rgb    = 1;
-    side_colour = 0;
+    // side_mode   = 0;
+    // side_light  = 1;
+    // side_speed  = 2;
+    // side_rgb    = 1;
+    // side_colour = 0;
 
     /* first power on, set rgb matrix brightness off */
     rgb_matrix_sethsv(255, 255, 0);
 
     user_config.default_brightness_flag = 0xA5;
-    user_config.ee_side_mode            = side_mode;
-    user_config.ee_side_light           = side_light;
-    user_config.ee_side_speed           = side_speed;
-    user_config.ee_side_rgb             = side_rgb;
-    user_config.ee_side_colour          = side_colour;
+    // user_config.ee_side_mode            = side_mode;
+    // user_config.ee_side_light           = side_light;
+    // user_config.ee_side_speed           = side_speed;
+    // user_config.ee_side_rgb             = side_rgb;
+    // user_config.ee_side_colour          = side_colour;
     user_config.sleep_enable            = true;
     user_config.rf_link_timeout         = LINK_TIMEOUT_ALT;
     eeconfig_update_kb_datablock(&user_config);
@@ -515,11 +515,11 @@ void led_power_handle(void) {
         }
     }
 
-    if (side_led_last_act > 100) { // 10ms intervals
-        if (side_light == 0) {
-            pwr_side_led_off();
-        } else {
-            pwr_side_led_on();
-        }
-    }
+    // if (side_led_last_act > 100) { // 10ms intervals
+    //     if (side_light == 0) {
+    //         pwr_side_led_off();
+    //     } else {
+    //         pwr_side_led_on();
+    //     }
+    // }
 }

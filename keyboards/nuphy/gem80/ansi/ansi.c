@@ -195,43 +195,43 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
             extern void light_speed_contol(uint8_t fast);
             extern void light_level_control(uint8_t brighten);
-            extern void side_colour_control(uint8_t dir);
-            extern void side_mode_control(uint8_t dir);
+            // extern void side_colour_control(uint8_t dir);
+            // extern void side_mode_control(uint8_t dir);
 
 
         case SIDE_VAI:
             if (record->event.pressed) {
-                side_light_control(1);
+                // side_light_control(1);
             }
             return false;
 
         case SIDE_VAD:
             if (record->event.pressed) {
-                side_light_control(0);
+                // side_light_control(0);
             }
             return false;
 
         case SIDE_MOD:
             if (record->event.pressed) {
-                side_mode_control(1);
+                // side_mode_control(1);
             }
             return false;
 
         case SIDE_HUI:
             if (record->event.pressed) {
-                side_colour_control(1);
+                // side_colour_control(1);
             }
             return false;
 
         case SIDE_SPI:
             if (record->event.pressed) {
-                side_speed_control(1);
+                // side_speed_control(1);
             }
             return false;
 
         case SIDE_SPD:
             if (record->event.pressed) {
-                side_speed_control(0);
+                // side_speed_control(0);
             }
             return false;
 
@@ -344,7 +344,7 @@ void housekeeping_task_kb(void) {
 
     dial_sw_scan();
 
-    side_led_show();
+    // side_led_show();
 
     sleep_handle();
 }

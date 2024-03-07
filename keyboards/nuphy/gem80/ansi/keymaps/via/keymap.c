@@ -1,5 +1,9 @@
+#include "quantum.h"
+#include "color.h"
+#include "rgblight/rgblight_post_config.h"
 #include QMK_KEYBOARD_H
 #include "../../ansi.h"
+
 enum layers{
     MAC_BASE,
     MAC_FN,
@@ -85,3 +89,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+// #ifdef RGBLIGHT_ENABLE
+
+const rgblight_segment_t PROGMEM capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_BLUE}
+);
+
+const rgblight_segment_t PROGMEM mac_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {2, 3, HSV_CYAN}
+);
+const rgblight_segment_t PROGMEM win_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {2, 3, HSV_PURPLE}
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    capslock_layer,
+    mac_layer,
+    win_layer
+);
+
+void keyboard_post_init_user(void) {
+            // Enable the LED layers
+            rgblight_layers = my_rgb_layers;
+}
+
+// Enabling and disabling lighting layers for default layer
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, MAC_BASE));
+    rgblight_set_layer_state(2, layer_state_cmp(state, WIN_BASE));
+
+    return state;
+}
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(0, led_state.caps_lock);
+    return true;
+}
+
+// bool led_update_kb(led_t led_state) {
+//     if (!led_update_user(led_state)) { return false; }
+//     rgblight_set_layer_state(0, led_state.caps_lock);
+//     return true;
+// }
+//
+// void keyboard_post_init_kb(void) {
+//     rgblight_layers = my_rgb_layers;
+//     keyboard_post_init_user();
+// }
+
+// #endif
