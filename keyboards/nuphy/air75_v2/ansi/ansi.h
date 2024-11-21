@@ -27,7 +27,12 @@ enum custom_keycodes {
     LNK_BLE2,
     LNK_BLE3,
 
+    MAC_TASK,
+    MAC_SEARCH,
     MAC_VOICE,
+    MAC_CONSOLE,
+    MAC_PRT,
+    MAC_PRTA,
     MAC_DND,
 
     SIDE_VAI,
