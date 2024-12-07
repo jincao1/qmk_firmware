@@ -50,7 +50,7 @@ uint16_t       rgb_led_last_act      = 0;
 uint16_t       side_led_last_act     = 0;
 uint16_t       sleep_time_delay      = SLEEP_TIME_DELAY;
 host_driver_t *m_host_driver         = 0;
-RGB            bat_pct_rgb           = {.r = 0x80, .g = 0x80, .b = 0x00};
+rgb_t          bat_pct_rgb           = {.r = 0x80, .g = 0x80, .b = 0x00};
 
 extern host_driver_t rf_host_driver;
 
@@ -477,7 +477,7 @@ void update_bat_pct_rgb(uint8_t bat_percent) {
         h = 43; // yellow
     }
 
-    HSV hsv = {
+    hsv_t hsv = {
         .h = h,
         .s = 255,
         .v = 128, // 50% max brightness

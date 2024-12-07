@@ -158,7 +158,7 @@ extern uint16_t           side_led_last_act;
 extern bool               f_bat_hold;
 extern bool               f_sys_show;
 extern bool               f_sleep_show;
-extern RGB                bat_pct_rgb;
+extern rgb_t              bat_pct_rgb;
 extern bool               f_rf_sw_press;
 extern bool               f_dev_reset_press;
 extern bool               f_bat_num_show;
