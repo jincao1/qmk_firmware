@@ -163,6 +163,7 @@ extern bool               f_rf_sw_press;
 extern bool               f_dev_reset_press;
 extern bool               f_bat_num_show;
 extern bool               f_rgb_test_press;
+extern bool               f_rgb_led_press;
 extern uint16_t           no_act_time;
 extern uint8_t            rf_sw_temp;
 extern uint16_t           rf_sw_press_delay;

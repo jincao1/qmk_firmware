@@ -25,6 +25,7 @@ BT mode key. No indicator for RF as the sidelight is a different colour.
   - No Sleep - for those that want their board to always be on... Right indicator blinks red.
 - Keyboard will never go to deep sleep in USB mode. This seems to cause issues on wake and I don't have a solution. I'm expecting that the device is powered and if it's not the keyboard would reset anyway.
 - Keyboard won't go to deep sleep if charging on wireless mode as charging interrupts the MCU causing it to sleep and wake repeatedly. To restore the proper sleep mode you must wake the board while it's off the charger.
+- Press and hold RGB matrix LED brightness up for `1.5s` to turn on RGB matrix if it was previously off. This is by choice to prevent accidentally turning on backlight when keyboard is being mashed in the NuFolio case for myself.
 
 ## Fixes
 

@@ -38,6 +38,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) {
         return false;
     }
+
     switch (keycode) {
         case RF_DFU:
             if (record->event.pressed) {
@@ -204,9 +205,12 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case RGB_VAI: // ensure LED powers on with brightness increase
-            if (record->event.pressed) {
-                pwr_rgb_led_on();
+        case RM_VALU: // ensure LED powers on with brightness increase
+
+            // require tap and hold to turn on RGB leds. Prevents mis-clicks from my case...
+            f_rgb_led_press = record->event.pressed;
+            if (!is_rgb_led_on()) {
+                return false;
             }
             return true;
 
