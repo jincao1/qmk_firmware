@@ -34,11 +34,18 @@ static bool tim6_enabled         = false;
 
 static bool rgb_led_on  = 0;
 static bool side_led_on = 0;
+static bool needs_wake_refresh = 0;
 
 void clear_report_buffer_and_queue(void);
 void side_rgb_refresh(void);
 void side_rgb_set_color_all(uint8_t r, uint8_t g, uint8_t b);
 void rgb_matrix_update_pwm_buffers(void);
+
+static void rgb_wake_refresh(void) {
+    for(uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+        user_set_rgb_color(i, 0, 0 ,0);
+    }
+}
 
 /** ================================================================
  * @brief   关闭USB
@@ -262,9 +269,7 @@ void led_pwr_sleep_handle(void) {
 void led_pwr_wake_handle(void) {
     if (rgb_led_powered_off) {
         pwr_rgb_led_on();
-        // Change any LED's state so the LED driver flushes after turning on for solid colours.
-        // Without doing this, the WS2812 driver wouldn't flush as the previous state is the same as current.
-        rgb_matrix_set_color_all(0, 0, 0);
+        needs_wake_refresh = 1;
     }
     if (side_led_powered_off) {
         pwr_side_led_on();
@@ -283,7 +288,15 @@ void pwr_rgb_led_off(void) {
 }
 
 void pwr_rgb_led_on(void) {
-    if (sleeping || rgb_led_on) return;
+    if (sleeping) return;
+    if(rgb_led_on) {
+        if(needs_wake_refresh) {
+            needs_wake_refresh = 0;
+            wait_ms(10);
+            rgb_wake_refresh();
+        }
+        return;
+    }
     // LED power supply on
     gpio_set_pin_output(DC_BOOST_PIN);
     gpio_write_pin_high(DC_BOOST_PIN);
@@ -291,6 +304,11 @@ void pwr_rgb_led_on(void) {
     gpio_write_pin_low(DRIVER_LED_CS_PIN);
     wait_us(200); // sleep a bit to ensure LEDs power properly?
     rgb_led_on = 1;
+    if(needs_wake_refresh) {
+        needs_wake_refresh = 0;
+        wait_ms(10);
+        rgb_wake_refresh();
+    }
 }
 
 void pwr_side_led_off(void) {
